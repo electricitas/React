@@ -2,23 +2,26 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 function App() {
-  const [items, setItems] = useState(["Thing 1", "Thing 2"]);
-  const [count, setCount] = useState(2);
 
-  const handleClick = () => {
-    console.log("hello");
-    setItems(prevItems => [...prevItems, `Thing ${count + 1}`]);
-    setCount(prevCount => prevCount + 1);
-  };
+  const [things, setThings] = React.useState(["Thing 1", "Thing 2"]);
+
+  function lisaaJuttuja() {
+
+    const uusiJuttu = `Thing ${things.length + 1}`;
+    setThings((prevState) => [...prevState, uusiJuttu]);
+  }
+
+  const jutut = things.map((thing) => <p>{thing}</p>);
 
   return (
+
     <div>
-      <button onClick={handleClick}>Add Item</button>
-      {items.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
+      <button onClick={lisaaJuttuja}>Add Item</button>
+      {jutut}
     </div>
+    
   );
 }
 
 export default App;
+
